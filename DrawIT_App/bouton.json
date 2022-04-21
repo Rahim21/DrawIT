@@ -1,0 +1,117 @@
+{
+    "noir": {
+        "x": 35.0,
+        "y": 510.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(color='#000000')"
+    },
+    "rouge": {
+        "x": 80.0,
+        "y": 510.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(color='#ff0000')"
+    },
+    "orange": {
+        "x": 125.0,
+        "y": 510.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(color='#F19E38')"
+    },
+    "jaune": {
+        "x": 170.0,
+        "y": 510.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(color='#FBFF55')"
+    },
+    "vert": {
+        "x": 170.0,
+        "y": 555.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(color='#7DFB4C')"
+    },
+    "bleu": {
+        "x": 125.0,
+        "y": 555.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(color='#6EECFC')"
+    },
+    "violet": {
+        "x": 80.0,
+        "y": 555.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(color='#7514F5')"
+    },
+    "rose": {
+        "x": 35.0,
+        "y": 555.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(color='#EA33ED')"
+    },
+    "multicolor": {
+        "x": 215.0,
+        "y": 510.0,
+        "width": 35.0,
+        "height": 80.0,
+        "assign": "lambda: change_pen_color()"
+    },
+    "fleche_gauche": {
+        "x": 280.0,
+        "y": 545.0,
+        "width": 55.0,
+        "height": 45.0
+    },
+    "fleche_droite": {
+        "x": 355.0,
+        "y": 545.0,
+        "width": 55.0,
+        "height": 45.0
+    },
+    "pinceau": {
+        "x": 440.0,
+        "y": 510.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(color=pen_color_tmp)"
+    },
+    "gomme": {
+        "x": 485.0,
+        "y": 510.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "lambda: change_pen_color(True)"
+    },
+    "poubelle": {
+        "x": 530.0,
+        "y": 510.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign" : "lambda: clear()"
+    },
+    "board": {
+        "x": 440.0,
+        "y": 555.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign" : "lambda: change_dashboard_color()"
+    },
+    "nothing2": {
+        "x": 485.0,
+        "y": 555.0,
+        "width": 35.0,
+        "height": 35.0
+    },
+    "nothing3": {
+        "x": 530.0,
+        "y": 555.0,
+        "width": 35.0,
+        "height": 35.0
+    }
+}
