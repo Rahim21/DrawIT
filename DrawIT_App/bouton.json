@@ -66,13 +66,15 @@
         "x": 280.0,
         "y": 545.0,
         "width": 55.0,
-        "height": 45.0
+        "height": 45.0,
+        "assign": "lambda: undo()"
     },
     "fleche_droite": {
         "x": 355.0,
         "y": 545.0,
         "width": 55.0,
-        "height": 45.0
+        "height": 45.0,
+        "assign": "lambda: redo()"
     },
     "pinceau": {
         "x": 440.0,

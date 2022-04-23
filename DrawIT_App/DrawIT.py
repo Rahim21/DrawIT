@@ -46,16 +46,19 @@ dashboard.place(x = 25, y = 75)
 # Methode pour dessiner sur le dashboard avec <B1-Motion>
 def draw(event):
     global init_x, init_y
+    global selectLine
     if init_x and init_y:
-        dashboard.create_line(init_x,init_y,event.x,event.y,width=pen_width,fill=pen_color,capstyle=ROUND,smooth=True)
+        dashboard.create_line(init_x,init_y,event.x,event.y,width=pen_width,fill=pen_color,capstyle=ROUND,smooth=True,tag="line"+str(selectLine))
 
     init_x = event.x
     init_y = event.y
 
 def reset(event):
-    global init_x, init_y
+    global init_x, init_y, selectLine
     init_x = None
     init_y = None
+    selectLine +=1
+    undo_list.clear() # si un nouveau trait est dessiné, 
 
 def clear():
     dashboard.delete(ALL)
@@ -80,11 +83,41 @@ def change_dashboard_color():  # Change la couleur du dashboard
 def change_brush_width(event):  # Change la taille du pinceau à l'aide d'un slider
     global pen_width
     pen_width = event
+    
 
+def undo():
+    global selectLine
+    if selectLine > 0:
+        for item in dashboard.find_withtag("line"+str(selectLine-1)): # récupérer toute les lignes avec le même tag en 1 item
+            if dashboard.find_withtag("line"+str(selectLine-1)): # si c'est bien la dernière ligne
+                coords_list.append(dashboard.coords(item))
+        undo_list.append(coords_list.copy()) # on fait une copie des coordonnées de l'item
+        coords_list.clear() # on peux donc supprimer ceci car on a fait au préalable une copie
+        dashboard.delete("line"+str(selectLine-1))
+        selectLine -= 1
+        #print("Debug UNDO :")
+        #print(undo_list)
+    else:
+        print("Aucune ligne à supprimer")
+
+def redo():
+    global selectLine
+    if len(undo_list) > 0:
+        item = undo_list[-1] # on récupère le dernier item
+        for coords in item: # on récupère les coordonnées de cette item
+            dashboard.create_line(coords,width=pen_width,fill=pen_color,capstyle=ROUND,smooth=True, tag="line"+str(selectLine))
+        selectLine += 1
+        undo_list.pop()
+    else:
+        print("Aucune ligne à rétablir")
+
+
+undo_list = [] # Liste des lignes supprimées
+coords_list = [] # Coordonnées des lignes supprimées avec le même tag
+selectLine = 0
 # Dessine un trait du pinceau jusqu'au relachement du clic de la souris
 dashboard.bind("<B1-Motion>", draw)
 dashboard.bind('<ButtonRelease-1>', reset)
-
 
 
 
