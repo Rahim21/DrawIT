@@ -58,10 +58,20 @@ def reset(event):
     init_x = None
     init_y = None
     selectLine +=1
-    undo_list.clear() # si un nouveau trait est dessiné, 
+    redo_list.clear() # si un nouveau trait est dessiné, 
 
 def clear():
-    dashboard.delete(ALL)
+    global selectLine
+    deleted_line = selectLine
+    poubelle_list = [] # Liste des lignes supprimées avec la poubelle
+    for deleted_line in range(deleted_line):
+        for item in dashboard.find_withtag("line"+str(deleted_line)):
+            poubelle_list.append(dashboard.coords(item))
+        poubelle_list_item.append(poubelle_list.copy())
+        poubelle_list.clear()
+    selectLine += 1 # On peux récupérer le contenue de la poubelle
+    redo_list.clear() # On ne peux plus rétablir car nous avons effectué l'action de suppression
+    dashboard.delete(ALL) # Efface le dashboard
 
 def change_pen_color(eraser=False, color="multicolor"):  # pinceau/gomme
     global pen_color, pen_color_tmp
@@ -78,42 +88,48 @@ def change_dashboard_color():  # Change la couleur du dashboard
     dashboard_color = colorchooser.askcolor(color=dashboard_color)[1]
     dashboard.configure(bg = dashboard_color)
 
-    
-
 def change_brush_width(event):  # Change la taille du pinceau à l'aide d'un slider
     global pen_width
     pen_width = event
     
-
 def undo():
     global selectLine
-    if selectLine > 0:
+    if len(poubelle_list_item) > 0:
+        item_selected = 0
+        for item in poubelle_list_item: # récupérer toute les lignes avec le même tag en 1 item
+            for coords in item:
+                dashboard.create_line(coords,width=pen_width,fill=pen_color,capstyle=ROUND,smooth=True, tag="line"+str(item_selected))
+            item_selected += 1
+        selectLine -= 1
+        poubelle_list_item.clear()
+    elif selectLine > 0:
         for item in dashboard.find_withtag("line"+str(selectLine-1)): # récupérer toute les lignes avec le même tag en 1 item
             if dashboard.find_withtag("line"+str(selectLine-1)): # si c'est bien la dernière ligne
                 coords_list.append(dashboard.coords(item))
-        undo_list.append(coords_list.copy()) # on fait une copie des coordonnées de l'item
+        redo_list.append(coords_list.copy()) # on fait une copie des coordonnées de l'item
         coords_list.clear() # on peux donc supprimer ceci car on a fait au préalable une copie
         dashboard.delete("line"+str(selectLine-1))
         selectLine -= 1
         #print("Debug UNDO :")
-        #print(undo_list)
+        #print(redo_list)
     else:
         print("Aucune ligne à supprimer")
 
 def redo():
     global selectLine
-    if len(undo_list) > 0:
-        item = undo_list[-1] # on récupère le dernier item
+    if len(redo_list) > 0:
+        item = redo_list[-1] # on récupère le dernier item
         for coords in item: # on récupère les coordonnées de cette item
             dashboard.create_line(coords,width=pen_width,fill=pen_color,capstyle=ROUND,smooth=True, tag="line"+str(selectLine))
         selectLine += 1
-        undo_list.pop()
+        redo_list.pop()
     else:
         print("Aucune ligne à rétablir")
 
 
-undo_list = [] # Liste des lignes supprimées
+redo_list = [] # Liste des lignes supprimées
 coords_list = [] # Coordonnées des lignes supprimées avec le même tag
+poubelle_list_item = [] # Liste des items supprimés avec la poubelle (par item)
 selectLine = 0
 # Dessine un trait du pinceau jusqu'au relachement du clic de la souris
 dashboard.bind("<B1-Motion>", draw)
@@ -161,13 +177,6 @@ slider_width = ttk.Scale(from_= 1, to = 100,command=change_brush_width,orient=HO
 slider_width.set(pen_width)
 slider_width.grid(row=0,column=1,ipadx=30)
 slider_width.place(x=300,y=510)
-
-# Slider pour l'opacité de la couleur
-#slider_opacity = ttk.Scale(from_= 1, to = 100,command=change_brush_width,orient=HORIZONTAL)
-#slider_opacity.set(pen_width)
-#slider_opacity.grid(row=0,column=1,ipadx=30)
-#slider_opacity.place(x=300,y=530)
-
 
 window.resizable(False, False)
 window.mainloop()
