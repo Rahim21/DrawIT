@@ -114,6 +114,7 @@
         "x": 530.0,
         "y": 555.0,
         "width": 35.0,
-        "height": 35.0
+        "height": 35.0,
+        "assign" : "lambda: debug()"
     }
 }
