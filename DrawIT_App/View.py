@@ -5,6 +5,7 @@ from tkinter import *
 from pathlib import Path
 import json
 
+
 # ———————————————————— PATH ————————————————————
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets")
@@ -25,6 +26,8 @@ class View(ttk.Frame):
         """
         super().__init__(parent)
 
+        self.parent = parent
+
         # Set the controller
         self.controller = None
 
@@ -44,6 +47,63 @@ class View(ttk.Frame):
         self.board = Canvas(parent, bg=self.board_color, height=500,
                             width=675, bd=0, highlightthickness=0, relief="ridge")
         self.board.place(x=25, y=75)
+
+        # create leaderboard
+        self.leaderboard_text = Text(parent, bg="#b2e3f7", height=22,
+                                     width=25, bd=0, highlightthickness=0, borderwidth=1)
+        self.leaderboard_text.place(x=810, y=70)
+        self.leaderboard_text.config(state=DISABLED)
+
+        # Create the chat
+        self.textbox = Text(parent, bg="white", height=20,
+                            width=25, bd=0, highlightthickness=0, borderwidth=1)
+        self.textbox.place(x=810, y=385)
+
+        self.chat = Text(parent, bg="white", height=2,
+                         width=25, bd=0, highlightthickness=0, borderwidth=1, relief="sunken")
+        self.chat.place(x=810, y=660)
+        # désactiver le curseur Textbox
+
+        # Create info bar
+        self.mode_text, self.shape_text, self.compliquer_text = tk.StringVar(
+        ), tk.StringVar(), tk.StringVar()
+
+        self.mode_text.set("Mode: pen")
+        self.mode = Label(parent, bg="#017aa0",
+                          textvariable=self.mode_text, font=("Helvetica", 12))
+        self.mode.place(x=560, y=610)
+
+        self.shape_text.set("Shape: line")
+        self.shape = Label(parent, bg="#017aa0",
+                           textvariable=self.shape_text, font=("Helvetica", 12))
+        self.shape.place(x=560, y=630)
+
+        self.current_color = Label(
+            parent, bg="#017aa0", text="Color: ", font=("Helvetica", 12))
+        self.current_color.place(x=560, y=650)
+
+        self.color_frame = Frame(parent, height=20, width=20)
+        self.color_frame.pack_propagate(False)
+        self.color_frame.pack(padx=6, pady=3)
+
+        self.custom = Label(
+            self.color_frame, relief='raised', background="#000")
+        self.custom.pack(fill=BOTH, expand=1)
+        self.color_frame.place(x=600, y=650)
+
+        self.compliquer_text.set(
+            """Chaque joueur peut compliquer 
+            la tâche au dessinateur (2 fois) (undo/clear)
+            """)
+        self.compliquer = Label(parent, bg="#017aa0",
+                                textvariable=self.compliquer_text, font=("Helvetica", 10), fg="white")
+        self.compliquer.place(x=520, y=670)
+
+        # Hidden word
+        self.hidden_word = tk.StringVar()
+        self.hidden_word_label = Label(parent, bg="#FFF",
+                                       textvariable=self.hidden_word, font=("Helvetica", 30))
+        self.hidden_word_label.place(x=450, y=10)
 
         # Init button
         self.bouton_dict = {}
@@ -66,6 +126,13 @@ class View(ttk.Frame):
         slider_width.set(5)
 
         slider_width.place(x=260, y=610)
+
+        # Create timer for the game
+        self.timer = tk.StringVar()
+        self.timer_label = Label(parent, bg="#9ff5ac",
+                                 textvariable=self.timer, font=("Helvetica", 20))
+        self.timer.set("? sec.")
+        self.timer_label.place(x=710, y=500)
 
     def set_controller(self, controller):
         """Set the controller

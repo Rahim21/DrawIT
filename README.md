@@ -32,8 +32,8 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -70,13 +70,38 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 To make the application work, please follow the steps below.
 
+For my part i'm using bash commands
+
+### Installation
+
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+
+1. Clone the repo
+   ```sh
+   git clone https://gitlab-mmi.univ-reims.fr/haya0002/drawit.git DrawIT
+   ```
+2. enter in the following folder:
+
+   ```sh
+   cd DrawIT
+   ```
+
+3. Start the `server`
+   ```python
+   python3 DrawIT_App/Server.py
+   ```
+4. Launch as many `clients` as you want
+   ```python
+   python3 DrawIT_App/DrawIT.py
+   ```
+
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
 
 - Activate the virtual environment provided so that you don't have to install each missing module by yourself.
 
-In the folder where the env, README,... folder is located type :
+In the folder `DrawIT` where the env, README,... folder is located type :
 
 ```sh
 source env/bin/activate
@@ -88,26 +113,25 @@ To deactivate type from any directory :
 deactivate
 ```
 
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Clone the repo
-   ```sh
-   git clone https://gitlab-mmi.univ-reims.fr/haya0002/drawit.git DrawIT
-   ```
-2. Step 2
-   ```sh
-   Play
-   ```
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+To `Start the game` type into the chatbox :
+
+```sh
+//START
+```
+
+you can `Cheat` by typing :
+
+```sh
+//CHEAT
+```
+
+this will give you the word in the chatbox but beware, everyone will know that you cheated
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -115,7 +139,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 ## License
 
-None : `LICENSE.txt`
+HAYAT Rahim : `LICENSE.txt`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -133,11 +157,13 @@ Project Link: [lien repo](lien repo)
 
 List of some resources that helped me to realize this project :
 
-- [Resources](link)
-- [Resources](link)
+- [Apprentissage Python](https://www.udemy.com/course/formation-complete-python/)
+- [Documentation Tkinter](https://docs.python.org/fr/3/library/tk.html)
+- [Modélisation MVC](https://openclassrooms.com/fr/courses/6900866-write-maintainable-python-code/7009312-structure-an-application-with-the-mvc-design-pattern)
+- [Socket TCP/UDP](https://youtu.be/3QiPPX-KeSc)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[drawit_screenshot]: img/drawIT_screenshot.png
+[drawit_screenshot]: img/DrawIT_Game.png
