@@ -1,120 +1,155 @@
 {
     "noir": {
-        "x": 35.0,
-        "y": 510.0,
+        "x": 25.0,
+        "y": 610.0,
         "width": 35.0,
         "height": 35.0,
-        "assign": "lambda: change_pen_color(color='#000000')"
+        "assign": "self.controller.change_pen_color(color='#000000')"
     },
     "rouge": {
-        "x": 80.0,
-        "y": 510.0,
+        "x": 70.0,
+        "y": 610.0,
         "width": 35.0,
         "height": 35.0,
-        "assign": "lambda: change_pen_color(color='#ff0000')"
+        "assign": "self.controller.change_pen_color(color='#ff0000')"
     },
     "orange": {
-        "x": 125.0,
-        "y": 510.0,
+        "x": 115.0,
+        "y": 610.0,
         "width": 35.0,
         "height": 35.0,
-        "assign": "lambda: change_pen_color(color='#F19E38')"
+        "assign": "self.controller.change_pen_color(color='#F19E38')"
     },
     "jaune": {
-        "x": 170.0,
-        "y": 510.0,
+        "x": 160.0,
+        "y": 610.0,
         "width": 35.0,
         "height": 35.0,
-        "assign": "lambda: change_pen_color(color='#FBFF55')"
+        "assign": "self.controller.change_pen_color(color='#FBFF55')"
     },
     "vert": {
-        "x": 170.0,
-        "y": 555.0,
+        "x": 160.0,
+        "y": 655.0,
         "width": 35.0,
         "height": 35.0,
-        "assign": "lambda: change_pen_color(color='#7DFB4C')"
+        "assign": "self.controller.change_pen_color(color='#7DFB4C')"
     },
     "bleu": {
-        "x": 125.0,
-        "y": 555.0,
+        "x": 115.0,
+        "y": 655.0,
         "width": 35.0,
         "height": 35.0,
-        "assign": "lambda: change_pen_color(color='#6EECFC')"
+        "assign": "self.controller.change_pen_color(color='#6EECFC')"
     },
     "violet": {
-        "x": 80.0,
-        "y": 555.0,
+        "x": 70.0,
+        "y": 655.0,
         "width": 35.0,
         "height": 35.0,
-        "assign": "lambda: change_pen_color(color='#7514F5')"
+        "assign": "self.controller.change_pen_color(color='#7514F5')"
     },
     "rose": {
-        "x": 35.0,
-        "y": 555.0,
+        "x": 25.0,
+        "y": 655.0,
         "width": 35.0,
         "height": 35.0,
-        "assign": "lambda: change_pen_color(color='#EA33ED')"
+        "assign": "self.controller.change_pen_color(color='#EA33ED')"
     },
     "multicolor": {
-        "x": 215.0,
-        "y": 510.0,
+        "x": 205.0,
+        "y": 610.0,
         "width": 35.0,
         "height": 80.0,
-        "assign": "lambda: change_pen_color()"
-    },
-    "fleche_gauche": {
-        "x": 280.0,
-        "y": 545.0,
+        "assign": "self.controller.change_pen_color()"
+    },"fleche_gauche": {
+        "x": 260.0,
+        "y": 645.0,
         "width": 55.0,
         "height": 45.0,
-        "assign": "lambda: undo()"
+        "assign": "self.controller.undo()"
     },
     "fleche_droite": {
-        "x": 355.0,
-        "y": 545.0,
+        "x": 335.0,
+        "y": 645.0,
         "width": 55.0,
         "height": 45.0,
-        "assign": "lambda: redo()"
-    },
-    "pinceau": {
-        "x": 440.0,
-        "y": 510.0,
-        "width": 35.0,
-        "height": 35.0,
-        "assign": "lambda: change_pen_color(color=pen_color_tmp)"
-    },
-    "gomme": {
-        "x": 485.0,
-        "y": 510.0,
-        "width": 35.0,
-        "height": 35.0,
-        "assign": "lambda: change_pen_color(True)"
-    },
-    "poubelle": {
-        "x": 530.0,
-        "y": 510.0,
-        "width": 35.0,
-        "height": 35.0,
-        "assign" : "lambda: clear()"
+        "assign": "self.controller.redo()"
     },
     "board": {
-        "x": 440.0,
-        "y": 555.0,
+        "x": 715.0,
+        "y": 75.0,
+        "width": 60.0,
+        "height": 60.0,
+        "assign" : "self.controller.change_board_color()"
+    },
+    "poubelle": {
+        "x": 715.0,
+        "y": 150.0,
+        "width": 60.0,
+        "height": 60.0,
+        "assign" : "self.controller.clear()"
+    },
+    "gomme": {
+        "x": 715.0,
+        "y": 225.0,
+        "width": 60.0,
+        "height": 60.0,
+        "assign": "self.controller.change_pen_color(True)"
+    },
+    "pinceau": {
+        "x": 715.0,
+        "y": 300.0,
+        "width": 60.0,
+        "height": 60.0,
+        "assign": "self.controller.change_pen_color(color=self.controller.model.paint.pen_color_tmp)"
+    },
+    "line": {
+        "x": 410.0,
+        "y": 610.0,
         "width": 35.0,
         "height": 35.0,
-        "assign" : "lambda: change_dashboard_color()"
+        "assign": "self.controller.update_selected_tool('line')"
     },
-    "nothing2": {
-        "x": 485.0,
-        "y": 555.0,
-        "width": 35.0,
-        "height": 35.0
-    },
-    "nothing3": {
-        "x": 530.0,
-        "y": 555.0,
+    "rectangle": {
+        "x": 455.0,
+        "y": 610.0,
         "width": 35.0,
         "height": 35.0,
-        "assign" : "lambda: debug()"
+        "assign": "self.controller.update_selected_tool('rectangle')"
+    },
+    "circle": {
+        "x": 500.0,
+        "y": 610.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "self.controller.update_selected_tool('circle')"
+    },
+    "straight_line": {
+        "x": 410.0,
+        "y": 655.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "self.controller.update_selected_tool('straight_line')"
+    },
+    "filled_rectangle": {
+        "x": 455.0,
+        "y": 655.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "self.controller.update_selected_tool('filled_rectangle')"
+    },
+    "filled_circle": {
+        "x": 500.0,
+        "y": 655.0,
+        "width": 35.0,
+        "height": 35.0,
+        "assign": "self.controller.update_selected_tool('filled_circle')"
+    },
+    "debug": {
+        "x": 960.0,
+        "y": 10.0,
+        "width": 30.0,
+        "height": 30.0,
+        "assign" : "self.controller.debug()"
     }
 }
